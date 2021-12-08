@@ -1,53 +1,48 @@
 package albums
 
-import (
-	"reflect"
-	"testing"
-)
+// func TestGetAll(t *testing.T) {
+// 	repo := NewRepository()
 
-func TestGetAll(t *testing.T) {
-	repo := NewRepository()
+// 	got := repo.FindAll()
+// 	want := itemsStore
 
-	got := repo.FindAll()
-	want := itemsStore
+// 	if !reflect.DeepEqual(got, want) {
+// 		t.Errorf("got %v want %v", got, want)
+// 	}
+// }
 
-	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got %v want %v", got, want)
-	}
-}
+// func TestGetById(t *testing.T) {
+// 	repo := NewRepository()
 
-func TestGetById(t *testing.T) {
-	repo := NewRepository()
+// 	t.Run("find existing item", func(t *testing.T) {
+// 		got := repo.FindById("1")
+// 		want := &itemsStore[1]
 
-	t.Run("find existing item", func(t *testing.T) {
-		got := repo.FindById("1")
-		want := &itemsStore[1]
+// 		if !reflect.DeepEqual(got, want) {
+// 			t.Errorf("got %v want %v", got, want)
+// 		}
+// 	})
+// 	t.Run("find non existsing item", func(t *testing.T) {
+// 		got := repo.FindById("-1")
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %v want %v", got, want)
-		}
-	})
-	t.Run("find non existsing item", func(t *testing.T) {
-		got := repo.FindById("-1")
+// 		if got != nil {
+// 			t.Errorf(`repo.FindById("-1") != nil`)
+// 		}
+// 	})
 
-		if got != nil {
-			t.Errorf(`repo.FindById("-1") != nil`)
-		}
-	})
+// }
 
-}
+// func TestAddOne(t *testing.T) {
+// 	repo := NewRepository()
 
-func TestAddOne(t *testing.T) {
-	repo := NewRepository()
+// 	t.Run("add one item", func(t *testing.T) {
+// 		newAlbum := Album{ID: "10", Title: "Black Album", Artist: "Metallica", Price: 99.99}
 
-	t.Run("add one item", func(t *testing.T) {
-		newAlbum := Album{ID: "10", Title: "Black Album", Artist: "Metallica", Price: 99.99}
+// 		repo.AddOne(&newAlbum)
 
-		repo.AddOne(&newAlbum)
-
-		got := itemsStore[len(itemsStore)-1]
-		if !reflect.DeepEqual(got, newAlbum) {
-			t.Errorf("got %v want %v", got, newAlbum)
-		}
-	})
-}
+// 		got := itemsStore[len(itemsStore)-1]
+// 		if !reflect.DeepEqual(got, newAlbum) {
+// 			t.Errorf("got %v want %v", got, newAlbum)
+// 		}
+// 	})
+// }

@@ -1,31 +1,27 @@
 package albums
 
+import "gorm.io/gorm"
+
 type AlbumRepository struct {
+	db *gorm.DB
 }
 
-var itemsStore = []Album{
-	{ID: "0", Title: "In Rainbows", Artist: "Radiohead", Price: 99.99},
-	{ID: "1", Title: "Blue Train", Artist: "John Coltrance", Price: 56.99},
-	{ID: "2", Title: "Jeru", Artist: "Gerry Mulligan", Price: 17.99},
-	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
+func (repo *AlbumRepository) FindAll() ([]Album, error) {
+	var items []Album
+	result := repo.db.Find(&items)
+	return items, result.Error
+}
+func (repo *AlbumRepository) FindById(id string) (*Album, error) {
+	var item Album
+	result := repo.db.First(&item, id)
+	return &item, result.Error
 }
 
-func (repo *AlbumRepository) FindAll() []Album {
-	return itemsStore
-}
-func (repo *AlbumRepository) FindById(id string) *Album {
-	for _, item := range itemsStore {
-		if item.ID == id {
-			return &item
-		}
-	}
-	return nil
+func (repo *AlbumRepository) AddOne(item *Album) error {
+	result := repo.db.Create(item)
+	return result.Error
 }
 
-func (repo *AlbumRepository) AddOne(newAlbum *Album) {
-	itemsStore = append(itemsStore, *newAlbum)
-}
-
-func NewRepository() *AlbumRepository {
-	return &AlbumRepository{}
+func NewRepository(db *gorm.DB) *AlbumRepository {
+	return &AlbumRepository{db: db}
 }

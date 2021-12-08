@@ -8,11 +8,11 @@ import (
 )
 
 func main() {
-	appConfig := app.LoadAppConfig()
+	context := app.NewContext()
 
-	router := server.NewRouter()
+	router := server.NewRouter(context)
 
-	address := fmt.Sprintf("%s:%d", appConfig.Server.Host, appConfig.Server.Port)
+	address := context.Config.Server.GetBindAddress()
 
 	router.Run(address)
 
