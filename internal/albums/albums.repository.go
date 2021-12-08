@@ -8,18 +8,19 @@ type AlbumRepository struct {
 
 func (repo *AlbumRepository) FindAll() ([]Album, error) {
 	var items []Album
-	result := repo.db.Find(&items)
-	return items, result.Error
+	err := repo.db.Find(&items).Error
+	return items, err
 }
+
 func (repo *AlbumRepository) FindById(id string) (*Album, error) {
 	var item Album
-	result := repo.db.First(&item, id)
-	return &item, result.Error
+	err := repo.db.First(&item, id).Error
+	return &item, err
 }
 
 func (repo *AlbumRepository) AddOne(item *Album) error {
-	result := repo.db.Create(item)
-	return result.Error
+	err := repo.db.Create(item).Error
+	return err
 }
 
 func NewRepository(db *gorm.DB) *AlbumRepository {

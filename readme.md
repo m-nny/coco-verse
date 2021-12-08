@@ -1,0 +1,28 @@
+# Todo
+
+- [ ] Database
+  - [x] create table
+  - [x] make basic CRUD
+  - [ ] make M-1 relationship
+  - [ ] migrations
+  - [ ] tests
+- [x] Config
+  - [x] Config Type
+  - [x] dotenv
+  - [ ] tests
+- [ ] Dependency Injection
+- [ ] Controller/Routing
+  - [x] Find framework
+  - [ ] DTO validation
+  - [ ] tests
+- [ ] Graphql
+  - [ ] Schema first
+  - [ ] Code first?
+  - [ ] tests
+- [ ] Microservices?
+  - [ ] monorepo
+  - [ ] tests
+- [ ] Health
+  - [ ] Healchecks
+  - [ ] Metrics
+  - [ ] Logs
